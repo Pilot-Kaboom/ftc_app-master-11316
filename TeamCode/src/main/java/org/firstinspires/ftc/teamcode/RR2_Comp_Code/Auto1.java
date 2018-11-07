@@ -13,6 +13,7 @@ public class Auto1 extends RR2_TeleBot {
             lifter.LiftOps(-1);
         }
         drive.resetEC();
+        //hi ho robot, away!
         drive.ECbackward(250, .25);
 
     }
