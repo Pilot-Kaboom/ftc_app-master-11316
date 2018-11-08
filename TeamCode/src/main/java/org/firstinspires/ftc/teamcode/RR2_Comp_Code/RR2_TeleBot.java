@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.RR2_Comp_Code;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 public abstract class RR2_TeleBot extends SuperSuperClass {
 
     public  Arm arm;
@@ -18,6 +16,11 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
         collect = new collecter(hardwareMap);
         lifter = new lift(hardwareMap);
         sense = new sensors(hardwareMap);
+        LoopingRevGyro gyro= new LoopingRevGyro(this.hardwareMap, "imu");
+
+        UpdatingManager updatingManager = new UpdatingManager(this);
+        updatingManager.addUpdatable(gyro);
+        updatingManager.start();
 
     }
 }
