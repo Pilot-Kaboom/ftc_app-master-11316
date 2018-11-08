@@ -9,7 +9,9 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.PushbotAutoDriveByEncoder_Linear;
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorREVColorDistance;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class sensors {
 
@@ -33,8 +35,27 @@ public class sensors {
         backtouch = sense.touchSensor.get("backtouch");
     }
 
-
-
+    public double backD(){
+        return (Bd.getDistance(DistanceUnit.INCH));
+    }
+    public double sideD(){
+        return (Sd.getDistance(DistanceUnit.INCH));
+    }
+    public double colorR(){
+        return(Rc.blue());
+    }
+    public double colorL(){
+        return(Lc.blue());
+    }
+    public double disL(){
+        return(Ld.getLightDetected());
+    }
+    public double disR(){
+        return(Rd.getLightDetected());
+    }
+    public boolean touch(){
+        return (backtouch.isPressed());
+    }
 
 
 }

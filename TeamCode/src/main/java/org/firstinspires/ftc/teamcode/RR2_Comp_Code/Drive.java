@@ -13,10 +13,6 @@ public class Drive {
 
     private final LinearOpMode adrive;
 
-    private double FEC;
-    private double BEC;
-    private double REC;
-    private double LEC;
     public Drive(LinearOpMode adrive){
         BRM = adrive.hardwareMap.dcMotor.get("brm");
         BLM = adrive.hardwareMap.dcMotor.get("blm");
@@ -70,37 +66,44 @@ public class Drive {
         BLM.setPower(stop);
         BRM.setPower(stop);
     }
-    public void ticks(){
-        FEC = FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4;
-        BEC = FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4;
-        REC = -FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + BRM.getCurrentPosition() / 4;
-        LEC = FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition()/4 + FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4;
+
+    public int fect(){
+        return( FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4);
+    }
+    public int bect(){
+        return( FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4);
+    }
+    public int rect(){
+        return( -FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + BRM.getCurrentPosition() / 4);
+    }
+    public int lect(){
+        return( FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition()/4 + FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4);
     }
     public void ECforward(double distance, double power){
-        while(FEC < distance){
+        while(fect() < distance){
             goForward(power);
         }
     }
     public void ECbackward(double distance, double power){
-        while(BEC < distance){
+        while(bect() < distance){
             goForward(-power);
         }
     }
     public void ECright(double distance, double power){
-        while(REC < distance){
+        while(rect() < distance){
             goRight(power);
         }
     }
     public void ECleft(double distance, double power){
-        while(LEC < distance){
+        while(lect() < distance){
             goRight(-power);
         }
     }
     public void ECtelem() {
-        adrive.telemetry.addData("FEC", FEC);
-        adrive.telemetry.addData("BEC", BEC);
-        adrive.telemetry.addData("REC", REC);
-        adrive.telemetry.addData("LEC", LEC);
+        adrive.telemetry.addData("FEC", fect());
+        adrive.telemetry.addData("BEC", bect());
+        adrive.telemetry.addData("REC", rect());
+        adrive.telemetry.addData("LEC", lect());
         adrive.telemetry.addData("FLM", FLM.getCurrentPosition());
         adrive.telemetry.addData("BLM", BLM.getCurrentPosition());
         adrive.telemetry.addData("BRM", BRM.getCurrentPosition());
