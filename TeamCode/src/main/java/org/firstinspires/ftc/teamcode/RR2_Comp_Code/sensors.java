@@ -19,6 +19,7 @@ public class sensors {
     private final DistanceSensor Sd;
     private final ColorSensor Rc;
     private final ColorSensor Lc;
+    private final ColorSensor white;
     private final OpticalDistanceSensor Ld;
     private final OpticalDistanceSensor Rd;
     private final Servo lights;
@@ -31,6 +32,7 @@ public class sensors {
         Rd = sense.opticalDistanceSensor.get("rcd");
         Lc = sense.colorSensor.get("lcd");
         Ld = sense.opticalDistanceSensor.get("lcd");
+        white = sense.colorSensor.get("white");
         lights = sense.servo.get("lights");
         backtouch = sense.touchSensor.get("backtouch");
     }
@@ -55,6 +57,9 @@ public class sensors {
     }
     public boolean touch(){
         return (backtouch.isPressed());
+    }
+    public double white(){
+        return (white.blue()-.1);
     }
 
 

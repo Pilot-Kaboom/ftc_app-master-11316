@@ -14,7 +14,10 @@ public class Auto1 extends RR2_TeleBot {
         }
         drive.resetEC();
         //hi ho robot, away!
-        drive.ECbackward(250, .25);
+        while(opModeIsActive() && drive.bect() <250 ){
+            drive.ECbackward(250, .25);
+        }
+
 
     }
 }
