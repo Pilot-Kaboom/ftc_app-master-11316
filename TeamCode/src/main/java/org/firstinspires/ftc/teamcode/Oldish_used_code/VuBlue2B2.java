@@ -23,7 +23,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGR
 /**
  * Created by Keith Harder on 1/16/2018.
  */
-@Autonomous(name="VuBlue2B2", group="Auto1")
+//@Autonomous(name="VuBlue2B2", group="Auto1")
 public class VuBlue2B2 extends LinearOpMode {
 
 

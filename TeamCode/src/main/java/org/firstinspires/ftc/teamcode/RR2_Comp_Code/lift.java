@@ -6,25 +6,25 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 public class lift {
     private final DcMotor winch;
-    private final TouchSensor uplimit;
-    private final TouchSensor downlimit;
+    //private final TouchSensor uplimit;
+    //private final TouchSensor downlimit;
 
     public lift(HardwareMap lif){
         winch = lif.dcMotor.get("winch");
-        uplimit = lif.touchSensor.get("uplimit");
-        downlimit = lif.touchSensor.get("downlimit");
+        //uplimit = lif.touchSensor.get("uplimit");
+        //downlimit = lif.touchSensor.get("downlimit");
     }
 
     public void LiftOps(double up){
-        if (uplimit.isPressed()){
+        /*if (uplimit.isPressed()){
             winch.setPower(0);
         }
         else if (downlimit.isPressed()){
             winch.setPower(0);
         }
-        else{
-            winch.setPower(up);
-        }
+        else{*/
+        winch.setPower(up);
+        //}
     }
 
 }

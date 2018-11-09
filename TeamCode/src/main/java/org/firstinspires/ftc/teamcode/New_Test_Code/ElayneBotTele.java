@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 /**
  * Created by Keith Harder on 7/23/2018.
  */
-@TeleOp(name="ElayneTele", group="Tele1")
+//@TeleOp(name="ElayneTele", group="Tele1")
 public class ElayneBotTele extends ElayneBotHard {
 
     @Override
