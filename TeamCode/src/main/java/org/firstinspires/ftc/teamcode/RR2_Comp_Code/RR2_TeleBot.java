@@ -7,6 +7,7 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
     public collecter collect;
     public lift lifter;
     public sensors sense;
+    public LoopingRevGyro gyro;
 
     @Override
     public void initiate(){

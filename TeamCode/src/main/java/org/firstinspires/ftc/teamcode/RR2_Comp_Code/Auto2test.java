@@ -84,7 +84,7 @@ public class Auto2test extends RR2_TeleBot {
         while(opModeIsActive() && sense.sideD() > 5){
             drive.goForward(-.5);
         }
-        while(opModeIsActive()){
+        while(opModeIsActive() ){
 
         }
 
