@@ -22,7 +22,7 @@ public class sensors {
     private final ColorSensor white;
     private final OpticalDistanceSensor Ld;
     private final OpticalDistanceSensor Rd;
-    private final Servo lights;
+    private final Servo dumper;
     private final TouchSensor backtouch;
 
     public sensors(HardwareMap sense){
@@ -33,7 +33,7 @@ public class sensors {
         Lc = sense.colorSensor.get("lcd");
         Ld = sense.opticalDistanceSensor.get("lcd");
         white = sense.colorSensor.get("white");
-        lights = sense.servo.get("lights");
+        dumper = sense.servo.get("dumper");
         backtouch = sense.touchSensor.get("backtouch");
     }
 
@@ -60,6 +60,9 @@ public class sensors {
     }
     public double white(){
         return (white.blue()-.1);
+    }
+    public void teammarker(double pos){
+        dumper.setPosition(pos);
     }
 
 

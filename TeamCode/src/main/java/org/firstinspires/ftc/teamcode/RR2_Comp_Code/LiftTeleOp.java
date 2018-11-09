@@ -8,16 +8,31 @@ public class LiftTeleOp extends RR2_LiftBot {
     @Override
     public void run() {
         while(opModeIsActive()){
+            drive.RunInPower();
             //drive
-            if (gamepad1.left_bumper){
-                drive.goForward(.25 * gamepad1.left_stick_y);
-                drive.goRight(.25 * gamepad1.left_stick_x);
-                drive.turn(2.5 * gamepad1.right_trigger-gamepad1.left_trigger);
+            /*drive.goForward(gamepad1.left_stick_y);
+            drive.goRight(gamepad1.left_stick_x);
+            drive.turn(gamepad1.right_trigger-gamepad1.left_trigger);*/
+            if(gamepad1.left_stick_y> .05){
+                drive.goForward(gamepad1.left_stick_y);
+            }
+            else if(gamepad1.left_stick_y< -.05){
+                drive.goForward(gamepad1.left_stick_y);
+            }
+            else if (gamepad1.left_stick_x> .05){
+                drive.goRight(gamepad1.left_stick_x);
+            }
+            else if (gamepad1.left_stick_x< -.05){
+                drive.goRight(gamepad1.left_stick_x);
+            }
+            else if(gamepad1.left_trigger>.1){
+                drive.turn(gamepad1.left_trigger*.5);
+            }
+            else if(gamepad1.right_trigger>.1){
+                drive.turn(-gamepad1.right_trigger*.5);
             }
             else{
-                drive.goForward(gamepad1.left_stick_y);
-                drive.goRight(gamepad1.left_stick_x);
-                drive.turn(gamepad1.right_trigger-gamepad1.left_trigger);
+                drive.StopMotors(0);
             }
             //arm
             //lift

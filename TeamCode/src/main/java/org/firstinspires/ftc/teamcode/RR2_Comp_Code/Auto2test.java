@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.RR2_Comp_Code;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name="auto2test", group="Auto1")
-public class Auto2test extends RR2_LiftBot {
+public class Auto2test extends RR2_TeleBot {
 
     @Override
     public void run() {
