@@ -16,7 +16,7 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
         drive = new Drive(this);
         collect = new collecter(hardwareMap);
         lifter = new lift(hardwareMap);
-        sense = new sensors(hardwareMap);
+        sense = new sensors(this);
         LoopingRevGyro gyro= new LoopingRevGyro(this.hardwareMap, "imu");
 
         UpdatingManager updatingManager = new UpdatingManager(this);

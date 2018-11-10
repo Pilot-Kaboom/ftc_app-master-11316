@@ -35,9 +35,21 @@ public class LiftTeleOp extends RR2_LiftBot {
                 drive.StopMotors(0);
             }
             //arm
+            vert.setPower(gamepad2.right_stick_y);
             //lift
             lifter.LiftOps(gamepad2.left_stick_y);
             //collecter
+            //telemetry
+            if(gamepad1.x){
+                drive.ECtelem();
+            }
+            else{
+                sense.sensortelem();
+            }
+
+
+
+
 
         }
     }

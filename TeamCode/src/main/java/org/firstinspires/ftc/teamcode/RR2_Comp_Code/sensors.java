@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.RR2_Comp_Code;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.PushbotAutoDriveByEncoder_Linear;
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorREVColorDistance;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class sensors {
@@ -24,17 +26,18 @@ public class sensors {
     private final OpticalDistanceSensor Rd;
     private final Servo dumper;
     private final TouchSensor backtouch;
-
-    public sensors(HardwareMap sense){
-        Bd = sense.get(DistanceSensor.class, "bd");
-        Sd = sense.get(DistanceSensor.class, "sd");
-        Rc = sense.colorSensor.get("rcd");
-        Rd = sense.opticalDistanceSensor.get("rcd");
-        Lc = sense.colorSensor.get("lcd");
-        Ld = sense.opticalDistanceSensor.get("lcd");
-        white = sense.colorSensor.get("white");
-        dumper = sense.servo.get("dumper");
-        backtouch = sense.touchSensor.get("backtouch");
+    private final LinearOpMode sense;
+    public sensors(LinearOpMode sense){
+        Bd = sense.hardwareMap.get(DistanceSensor.class, "bd");
+        Sd = sense.hardwareMap.get(DistanceSensor.class, "sd");
+        Rc = sense.hardwareMap.colorSensor.get("rcd");
+        Rd = sense.hardwareMap.opticalDistanceSensor.get("rcd");
+        Lc = sense.hardwareMap.colorSensor.get("lcd");
+        Ld = sense.hardwareMap.opticalDistanceSensor.get("lcd");
+        white = sense.hardwareMap.colorSensor.get("white");
+        dumper = sense.hardwareMap.servo.get("dumper");
+        backtouch = sense.hardwareMap.touchSensor.get("backtouch");
+        this.sense = sense;
     }
 
     public double backD(){
@@ -63,6 +66,16 @@ public class sensors {
     }
     public void teammarker(double pos){
         dumper.setPosition(pos);
+    }
+    public void sensortelem(){
+        sense.telemetry.addData("colorL", colorL());
+        sense.telemetry.addData("colorR", colorR());
+        sense.telemetry.addData("disL", disL());
+        sense.telemetry.addData("disR", disR());
+        sense.telemetry.addData("touch", touch());
+        sense.telemetry.addData("sideD", sideD());
+        sense.telemetry.addData("backD", backD());
+        sense.telemetry.update();
     }
 
 

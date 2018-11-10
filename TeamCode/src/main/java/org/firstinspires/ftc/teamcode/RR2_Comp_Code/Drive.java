@@ -43,10 +43,10 @@ public class Drive {
         adrive.idle();
     }
     public void goForward(double power){
-        FLM.setPower(-power);
-        FRM.setPower(power);
-        BLM.setPower(-power);
-        BRM.setPower(power);
+        FLM.setPower(power);
+        FRM.setPower(-power);
+        BLM.setPower(power);
+        BRM.setPower(-power);
     }
     public void goRight(double power){
         FLM.setPower(-power);
@@ -67,10 +67,10 @@ public class Drive {
         BRM.setPower(stop);
     }
 
-    public int fect(){
+    public int bect(){
         return( FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4);
     }
-    public int bect(){
+    public int fect(){
         return( FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4);
     }
     public int rect(){
