@@ -54,7 +54,7 @@ public class Drive {
         BLM.setPower(power);
         BRM.setPower(power);
     }
-    public void turn(double power){
+    public void turnClockwise(double power){
         FLM.setPower(power);
         FRM.setPower(power);
         BLM.setPower(power);
@@ -66,6 +66,27 @@ public class Drive {
         BLM.setPower(stop);
         BRM.setPower(stop);
     }
+    public void teledrive(double forward, double right, double turnC, double turnCC){
+        FLM.setPower(forward - right + turnC - turnCC);
+        FRM.setPower(-forward - right + turnC - turnCC);
+        BLM.setPower(forward + right + turnC - turnCC);
+        BRM.setPower(-forward + right + turnC - turnCC);
+    }
+    public void diaginalFRtoBL(double power){
+        FRM.setPower(power);
+        BLM.setPower(power);
+    }
+    public void diaginalFLtoBR(double power){
+        FLM.setPower(power);
+        BRM.setPower(power);
+    }
+    /*
+     FLM.setPower(gamepad1.left_stick_y + -gamepad1.left_stick_x +(gamepad1.right_stick_y*.35 + -gamepad1.right_stick_x*.35)+ (gamepad1.left_trigger + -gamepad1.right_trigger* .5));
+     FRM.setPower(-gamepad1.left_stick_y + -gamepad1.left_stick_x +(-gamepad1.right_stick_y*.35 + -gamepad1.right_stick_x*.35)+ (gamepad1.left_trigger + -gamepad1.right_trigger* .5));
+     BRM.setPower(-gamepad1.left_stick_y + gamepad1.left_stick_x +(-gamepad1.right_stick_y*.35 + gamepad1.right_stick_x*.35)+ (gamepad1.left_trigger + -gamepad1.right_trigger* .5));
+     BLM.setPower(gamepad1.left_stick_y + gamepad1.left_stick_x +(gamepad1.right_stick_y*.35 + gamepad1.right_stick_x*.35)+ (gamepad1.left_trigger + -gamepad1.right_trigger* .5));
+
+    */
 
     public int bect(){
         return( FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4);

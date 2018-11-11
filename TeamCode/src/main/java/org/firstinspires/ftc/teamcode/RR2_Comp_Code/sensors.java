@@ -62,7 +62,7 @@ public class sensors {
         return (backtouch.isPressed());
     }
     public double white(){
-        return (white.blue()-.1);
+        return (white.blue()-4);
     }
     public void teammarker(double pos){
         dumper.setPosition(pos);

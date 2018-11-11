@@ -8,8 +8,10 @@ public abstract class RR2_LiftBot extends SuperSuperClass {
     public lift lifter;
     public sensors sense;
     public DcMotor vert;
-    //public LoopingRevGyro gyro;
-
+    public LoopingRevGyro gyro;
+    public boolean Gright;
+    public boolean Gleft;
+    public boolean Gcenter;
     @Override
     public void initiate(){
 
@@ -17,11 +19,11 @@ public abstract class RR2_LiftBot extends SuperSuperClass {
         lifter = new lift(hardwareMap);
         sense = new sensors(this);
         vert = hardwareMap.dcMotor.get("vert");
-        //LoopingRevGyro gyro= new LoopingRevGyro(this.hardwareMap, "imu");
+        LoopingRevGyro gyro= new LoopingRevGyro(this.hardwareMap, "imu");
 
-        //UpdatingManager updatingManager = new UpdatingManager(this);
-        //updatingManager.addUpdatable(gyro);
-        //updatingManager.start();
+        UpdatingManager updatingManager = new UpdatingManager(this);
+        updatingManager.addUpdatable(gyro);
+        updatingManager.start();
 
     }
 }
