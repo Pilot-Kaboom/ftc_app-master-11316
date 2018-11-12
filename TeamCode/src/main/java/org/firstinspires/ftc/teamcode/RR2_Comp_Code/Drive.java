@@ -88,10 +88,10 @@ public class Drive {
 
     */
 
-    public int bect(){
+    public int fect(){
         return( FRM.getCurrentPosition()/4 + BRM.getCurrentPosition()/4 + -FLM.getCurrentPosition()/4 +  -BLM.getCurrentPosition() / 4);
     }
-    public int fect(){
+    public int bect(){
         return( FLM.getCurrentPosition()/4 +  BLM.getCurrentPosition()/4 + -FRM.getCurrentPosition()/4 + -BRM.getCurrentPosition() / 4);
     }
     public int rect(){
