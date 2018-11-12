@@ -43,10 +43,10 @@ public class Drive {
         adrive.idle();
     }
     public void goForward(double power){
-        FLM.setPower(power);
-        FRM.setPower(-power);
-        BLM.setPower(power);
-        BRM.setPower(-power);
+        FLM.setPower(-power);
+        FRM.setPower(power);
+        BLM.setPower(-power);
+        BRM.setPower(power);
     }
     public void goRight(double power){
         FLM.setPower(-power);
