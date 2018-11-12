@@ -13,7 +13,7 @@ public class LiftTeleOp extends RR2_LiftBot {
             /*drive.goForward(gamepad1.left_stick_y);
             drive.goRight(gamepad1.left_stick_x);
             drive.turn(gamepad1.right_trigger-gamepad1.left_trigger);*/
-            drive.teledrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_trigger, gamepad1.left_trigger);
+            drive.teledrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.left_trigger, gamepad1.right_trigger);
             //arm
             vert.setPower(gamepad2.right_stick_y);
             //lift
