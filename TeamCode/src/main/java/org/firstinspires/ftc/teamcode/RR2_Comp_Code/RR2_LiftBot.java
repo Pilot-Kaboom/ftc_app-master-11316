@@ -12,6 +12,7 @@ public abstract class RR2_LiftBot extends SuperSuperClass {
     public boolean Gright;
     public boolean Gleft;
     public boolean Gcenter;
+    public boolean doit;
     @Override
     public void initiate(){
 

@@ -55,10 +55,10 @@ public class Drive {
         BRM.setPower(power);
     }
     public void turnClockwise(double power){
-        FLM.setPower(power);
-        FRM.setPower(power);
-        BLM.setPower(power);
-        BRM.setPower(power);
+        FLM.setPower(-power);
+        FRM.setPower(-power);
+        BLM.setPower(-power);
+        BRM.setPower(-power);
     }
     public void StopMotors(double stop){
         FLM.setPower(stop);
@@ -75,10 +75,14 @@ public class Drive {
     public void diaginalFRtoBL(double power){
         FRM.setPower(power);
         BLM.setPower(power);
+        FLM.setPower(0);
+        BRM.setPower(0);
     }
     public void diaginalFLtoBR(double power){
         FLM.setPower(power);
         BRM.setPower(power);
+        FRM.setPower(0);
+        BLM.setPower(0);
     }
     /*
      FLM.setPower(gamepad1.left_stick_y + -gamepad1.left_stick_x +(gamepad1.right_stick_y*.35 + -gamepad1.right_stick_x*.35)+ (gamepad1.left_trigger + -gamepad1.right_trigger* .5));

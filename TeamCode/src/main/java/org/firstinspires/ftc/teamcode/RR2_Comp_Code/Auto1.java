@@ -20,13 +20,13 @@ public class Auto1 extends RR2_LiftBot {
         vert.setPower(0);
         drive.resetEC();
         //hi ho robot, away!
-        while(opModeIsActive() && drive.bect() <250 ){
+        while(opModeIsActive() && drive.bect() <150 ){
             drive.goForward(-1);
         }
-        while(opModeIsActive() && sense.backD()< 30){
+        while(opModeIsActive() && sense.backD()< 18){
             drive.goRight(-.75);
         }
-        while(opModeIsActive() && sense.backD()> 30 && sense.backD() < 36){
+        while(opModeIsActive() && sense.backD()> 18 && sense.backD() < 24){
             drive.goRight(-.25);
         }
         drive.StopMotors(0);
@@ -36,6 +36,26 @@ public class Auto1 extends RR2_LiftBot {
             Gright = true;
             Gcenter = false;
             Gleft = false;
+
+        }
+        //gold in center
+        else if(sense.colorL()> sense.white() && sense.colorR() < sense.white()){
+            Gright = false;
+            Gcenter = true;
+            Gleft = false;
+        }
+        //gold on left
+        else if(sense.colorL()< sense.white() && sense.colorR() > sense.white()){
+            Gright = false;
+            Gcenter = false;
+            Gleft = true;
+        }
+        else{
+            Gright = false;
+            Gcenter = false;
+            Gleft = false;
+        }
+        while (opModeIsActive() && Gright && doit){
             while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
             }
@@ -54,16 +74,38 @@ public class Auto1 extends RR2_LiftBot {
             while(opModeIsActive() && drive.rect() < 100){
                 drive.goRight(.75);
             }
+            doit = false;
             drive.StopMotors(0);
             drive.resetEC();
             telemetry.addData("gold on right", 1);
             telemetry.update();
         }
-        //gold in center
-        else if(sense.colorL()> sense.white() && sense.colorR() < sense.white()){
-            Gright = false;
-            Gcenter = true;
-            Gleft = false;
+        while(opModeIsActive() && Gleft && doit){
+            while(opModeIsActive() && drive.rect() < 50){
+                drive.goRight(.5);
+            }
+            drive.StopMotors(0);
+            drive.resetEC();
+            while(opModeIsActive() && drive.bect() < 250){
+                drive.goForward(-.5);
+            }
+            drive.StopMotors(0);
+            drive.resetEC();
+            while(opModeIsActive() && drive.lect() < 100){
+                drive.goRight(-.75);
+            }
+            drive.StopMotors(0);
+            drive.resetEC();
+            while(opModeIsActive() && drive.rect() < 100){
+                drive.goRight(.75);
+            }
+            doit = false;
+            drive.StopMotors(0);
+            drive.resetEC();
+            telemetry.addData("gold on left", 1);
+            telemetry.update();
+        }
+        while(opModeIsActive() && doit&& Gcenter){
             while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
             }
@@ -87,11 +129,7 @@ public class Auto1 extends RR2_LiftBot {
             telemetry.addData("gold in center", 1);
             telemetry.update();
         }
-        //gold on left
-        else if(sense.colorL()> sense.white() && sense.colorR() < sense.white()){
-            Gright = false;
-            Gcenter = false;
-            Gleft = true;
+        while(opModeIsActive() && !Gleft && !Gright && !Gcenter && doit){
             while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
             }
@@ -110,43 +148,19 @@ public class Auto1 extends RR2_LiftBot {
             while(opModeIsActive() && drive.rect() < 100){
                 drive.goRight(.75);
             }
-            drive.StopMotors(0);
-            drive.resetEC();
-            telemetry.addData("gold on left", 1);
-            telemetry.update();
-        }
-        else{
-            Gright = false;
-            Gcenter = false;
-            Gleft = false;
-            while(opModeIsActive() && drive.rect() < 50){
-                drive.goRight(.5);
-            }
-            drive.StopMotors(0);
-            drive.resetEC();
-            while(opModeIsActive() && drive.bect() < 250){
-                drive.goForward(-.5);
-            }
-            drive.StopMotors(0);
-            drive.resetEC();
-            while(opModeIsActive() && drive.lect() < 100){
-                drive.goRight(-.75);
-            }
-            drive.StopMotors(0);
-            drive.resetEC();
-            while(opModeIsActive() && drive.rect() < 100){
-                drive.goRight(.75);
-            }
+            doit = false;
             drive.StopMotors(0);
             drive.resetEC();
             telemetry.addData("failed to find gold", 1);
             telemetry.update();
         }
-        while(opModeIsActive() && sense.sideD()>12){
+        while(opModeIsActive() && sense.sideD()>14){
             drive.goForward(-.75);
         }
         drive.StopMotors(0);
         drive.resetEC();
+        time.reset();
+        /*
         while(opModeIsActive() && gyro.getGyroZ(AngleUnit.DEGREES)< 45){
             drive.turnClockwise(.75);
         }
@@ -161,7 +175,11 @@ public class Auto1 extends RR2_LiftBot {
             else{
                 drive.StopMotors(0);
             }
+        }*/
+        while(opModeIsActive() && time.seconds()< .7){
+            drive.turnClockwise(-.75);
         }
+        drive.StopMotors(0);
         while(opModeIsActive()&& drive.bect() < 1000){
             if (sense.sideD()>5){
                 drive.diaginalFLtoBR(-1);
@@ -172,14 +190,22 @@ public class Auto1 extends RR2_LiftBot {
             else {
                 drive.goForward(-.75);
             }
+            telemetry.addData("failed to find gold", 1);
+            telemetry.addData("following wall to zone", 1);
+            telemetry.update();
         }
+        drive.StopMotors(0);
         while(opModeIsActive() && time.seconds()<1){
             sense.teammarker(.75);
+            telemetry.addData("dumping TM", 1);
+            telemetry.update();
         }
         sense.teammarker(0);
         drive.StopMotors(0);
         drive.resetEC();
         while(opModeIsActive() && (Gright || Gcenter || Gleft)){
+            telemetry.addData("attempting 2nd mineral", 1);
+            telemetry.update();
             if(Gleft){
                 while(drive.fect()<50){
                     drive.goForward(.25);
@@ -230,6 +256,7 @@ public class Auto1 extends RR2_LiftBot {
             }
 
         }
+        drive.StopMotors(0);
         while(opModeIsActive()&& drive.fect() < 1250){
             if (sense.sideD()>5){
                 drive.diaginalFLtoBR(1);
@@ -240,6 +267,8 @@ public class Auto1 extends RR2_LiftBot {
             else {
                 drive.goForward(.75);
             }
+            telemetry.addData("return to crater", 1);
+            telemetry.update();
         }
         drive.StopMotors(0);
     }
