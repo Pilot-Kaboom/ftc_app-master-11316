@@ -66,7 +66,7 @@ public class Drive {
         BLM.setPower(stop);
         BRM.setPower(stop);
     }
-    public void teledrive(double forward, double right, double turnC, double turnCC){
+    public void teledrive(double forward, double right, double turnCC, double turnC){
         FLM.setPower(forward - right + turnC - turnCC);
         FRM.setPower(-forward - right + turnC - turnCC);
         BLM.setPower(forward + right + turnC - turnCC);
