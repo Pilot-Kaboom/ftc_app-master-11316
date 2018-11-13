@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.RR2_Comp_Code;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -13,7 +15,11 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcontroller.external.samples.PushbotAutoDriveByEncoder_Linear;
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorREVColorDistance;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class sensors {
 
@@ -26,6 +32,8 @@ public class sensors {
     private final OpticalDistanceSensor Rd;
     private final Servo dumper;
     private final TouchSensor backtouch;
+   // private final BNO055IMU imu;
+   // private Orientation angle;
     private final LinearOpMode sense;
     public sensors(LinearOpMode sense){
         Bd = sense.hardwareMap.get(DistanceSensor.class, "bd");
@@ -37,9 +45,24 @@ public class sensors {
         white = sense.hardwareMap.colorSensor.get("white");
         dumper = sense.hardwareMap.servo.get("dumper");
         backtouch = sense.hardwareMap.touchSensor.get("backtouch");
+        /*
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        // Retrieve and initialize the IMU. We expect the IMU to be attached to an I2C port
+        // on a Core Device Interface Module, configured to be a sensor of type "AdaFruit IMU",
+        // and named "imu".
+        imu = sense.hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);*/
         this.sense = sense;
     }
 
+    //public double angular(){return formatAngle(sense.angle.angleUnit, sense.angle.firstAngle)}
     public double backD(){
         return (Bd.getDistance(DistanceUnit.INCH));
     }
