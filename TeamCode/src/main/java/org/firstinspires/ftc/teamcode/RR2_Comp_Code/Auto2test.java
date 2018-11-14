@@ -11,7 +11,7 @@ public class Auto2test extends RR2_LiftBot {
 
         while (opModeIsActive() && time.seconds() < 1.5){
             lifter.LiftOps(.1);
-            vert.setPower(1);
+            //vert.setPower(1);
         }
         drive.resetEC();
         //hi ho robot, away!

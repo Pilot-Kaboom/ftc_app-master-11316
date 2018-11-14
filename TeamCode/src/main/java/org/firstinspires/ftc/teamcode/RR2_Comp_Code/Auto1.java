@@ -12,7 +12,10 @@ public class Auto1 extends RR2_LiftBot {
     public void run() {
         drive.resetEC();
         //drop
-        while (opModeIsActive() && time.seconds() < 1.5){
+        while (opModeIsActive() && time.seconds() <.5){
+            lifter.LiftOps(-1);
+        }
+        while (opModeIsActive() && time.seconds() < 2){
             lifter.LiftOps(1);
             //vert.setPower(1);
         }
@@ -20,14 +23,20 @@ public class Auto1 extends RR2_LiftBot {
         //vert.setPower(0);
         drive.resetEC();
         //hi ho robot, away!
-        while(opModeIsActive() && drive.bect() <150 ){
-            drive.goForward(-1);
+        while(opModeIsActive() && drive.bect() <125 ){
+            drive.goForward(-.5);
+        }
+        time.reset();
+        while(opModeIsActive() && time.seconds()< .25){
+            drive.StopMotors(0);
         }
         while(opModeIsActive() && sense.backD()< 18){
             drive.goRight(-.75);
+            sense.sensortelem();
         }
         while(opModeIsActive() && sense.backD()> 18 && sense.backD() < 24){
             drive.goRight(-.25);
+            sense.sensortelem();
         }
         drive.StopMotors(0);
         drive.resetEC();
