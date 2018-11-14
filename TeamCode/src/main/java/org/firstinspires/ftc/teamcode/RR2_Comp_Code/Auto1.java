@@ -14,10 +14,10 @@ public class Auto1 extends RR2_LiftBot {
         //drop
         while (opModeIsActive() && time.seconds() < 1.5){
             lifter.LiftOps(1);
-            vert.setPower(1);
+            //vert.setPower(1);
         }
         lifter.LiftOps(0);
-        vert.setPower(0);
+        //vert.setPower(0);
         drive.resetEC();
         //hi ho robot, away!
         while(opModeIsActive() && drive.bect() <150 ){
