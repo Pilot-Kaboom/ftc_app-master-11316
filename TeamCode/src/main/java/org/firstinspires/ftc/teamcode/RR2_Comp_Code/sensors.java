@@ -91,6 +91,7 @@ public class sensors {
         dumper.setPosition(pos);
     }
     public void sensortelem(){
+        sense.telemetry.addData("white", white());
         sense.telemetry.addData("colorL", colorL());
         sense.telemetry.addData("colorR", colorR());
         sense.telemetry.addData("disL", disL());
@@ -98,6 +99,7 @@ public class sensors {
         sense.telemetry.addData("touch", touch());
         sense.telemetry.addData("sideD", sideD());
         sense.telemetry.addData("backD", backD());
+
         sense.telemetry.update();
     }
 
