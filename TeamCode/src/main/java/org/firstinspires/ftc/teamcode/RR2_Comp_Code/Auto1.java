@@ -31,25 +31,28 @@ public class Auto1 extends RR2_LiftBot {
         while(opModeIsActive() && time.seconds()< .25){
             drive.StopMotors(0);
         }
-        while(opModeIsActive() && sense.backD()< 13){
+        /*
+        while(opModeIsActive() && sense.backD()< 14){
             drive.goRight(-.75);
+            sense.sensortelem();
 
-        }
-        while(opModeIsActive() && sense.backD()> 13 && sense.backD() < 17){
+        }*/
+        while(opModeIsActive() && sense.backD() < 21){
             drive.goRight(-.25);
             sense.sensortelem();
-            telemetry.addData("going to gold", 1);
-            telemetry.update();
+
         }
         drive.StopMotors(0);
         drive.resetEC();
-        while(opModeIsActive() && (sense.colorR()>sense.white()||sense.colorL() >sense.white())){
+        while(opModeIsActive()&& (sense.disL()<.19 && sense.disR()< .19)){
             drive.goForward(-.25);
             sense.sensortelem();
-            telemetry.addData("looking for gold", 1);
-            telemetry.update();
         }
+        time.reset();
+        while(opModeIsActive()&& time.seconds()<.1)
+        drive.StopMotors(0);
         //gold on right
+        /*
         if(sense.colorL()> sense.white() && sense.colorR() > sense.white()){
             Gright = true;
             Gcenter = false;
@@ -73,69 +76,150 @@ public class Auto1 extends RR2_LiftBot {
             Gcenter = false;
             Gleft = false;
         }
+        */
+        time.reset();
+        while(opModeIsActive() && time.seconds()<1){
+            if((sense.colorR()> 27 )&& (sense.colorL()> 27)){
+                Gright = true;
+                Gcenter = false;
+                Gleft = false;
+                telemetry.addData("deciding", 1);
+                telemetry.addData("gold on right",1);
+                sense.sensortelem();
+                telemetry.update();
+            }
+            //gold in center
+            else if(sense.colorR()> 26){
+                Gright = false;
+                Gcenter = false;
+                Gleft = true;
+                telemetry.addData("deciding", 1);
+                telemetry.addData("gold on center",1);
+                sense.sensortelem();
+                telemetry.update();
+            }
+            //gold on left
+            else if(sense.colorL()> 26){
+                Gright = false;
+                Gcenter = true;
+                Gleft = false;
+                telemetry.addData("deciding", 1);
+                telemetry.addData("gold on left",1);
+                sense.sensortelem();
+                telemetry.update();
+            }
+            else{
+                Gright = false;
+                Gcenter = false;
+                Gleft = false;
+                telemetry.addData("deciding", 1);
+                telemetry.addData("gold not found",1);
+                sense.sensortelem();
+                telemetry.update();
+            }
+        }
+
         while (opModeIsActive() && Gright && doit){
             /*while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
                 drive.ECtelem();
             }*/
+            telemetry.addData("do it", doit);
+            telemetry.addData("gold on right",1);
+            telemetry.update();
+            doit = false;
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
-            while(opModeIsActive() && drive.fect() < 1000){
+            while(opModeIsActive() && drive.fect() < 1500){
                 drive.goForward(.5);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on right",1);
+                telemetry.update();
+
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.lect() < 400){
                 drive.goRight(-.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on right",1);
+                telemetry.update();
+
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.rect() < 400){
                 drive.goRight(.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on right",1);
+                telemetry.update();
             }
-            doit = false;
+
             drive.StopMotors(0);
             drive.resetEC();
-            drive.ECtelem();
+            while(opModeIsActive() && drive.bect() < 2250){
+                drive.goForward(-.75);
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on right",1);
+                telemetry.update();
 
+            }
+            drive.StopMotors(0);
+            drive.resetEC();
         }
         time.reset();
-        while(opModeIsActive() && (time.seconds()<4|| (Gleft && doit))){
+        while(opModeIsActive() && Gleft && doit){
             /*while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
                 drive.ECtelem();
             }*/
+            telemetry.addData("do it", doit);
+            telemetry.addData("gold on left",1);
+            telemetry.update();
+            doit = false;
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.bect() < 500){
                 drive.goForward(-.5);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on left",1);
+                telemetry.update();
+
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.lect() < 400){
                 drive.goRight(-.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on left",1);
+                telemetry.update();
+
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.rect() < 400){
                 drive.goRight(.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on left",1);
+                telemetry.update();
+
             }
-            doit = false;
+
             drive.StopMotors(0);
             drive.resetEC();
-            drive.ECtelem();
+            while(opModeIsActive() && drive.bect() < 500){
+                drive.goForward(-.5);
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on left",1);
+                telemetry.update();
+
+            }
 
         }
         while(opModeIsActive() && doit&& Gcenter){
@@ -143,33 +227,51 @@ public class Auto1 extends RR2_LiftBot {
                 drive.goRight(.5);
                 drive.ECtelem();
             }*/
+            telemetry.addData("do it", doit);
+            telemetry.addData("gold on center",1);
+            telemetry.update();
+            doit = false;
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.fect() < 500){
                 drive.goForward(.5);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on center",1);
+                telemetry.update();
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.lect() < 400){
                 drive.goRight(-.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on center",1);
+                telemetry.update();
             }
             drive.StopMotors(0);
             drive.resetEC();
             sleep(500);
             while(opModeIsActive() && drive.rect() < 400){
                 drive.goRight(.75);
-                drive.ECtelem();
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on center",1);
+                telemetry.update();
+            }
+
+            drive.StopMotors(0);
+            drive.resetEC();
+            while(opModeIsActive() && drive.bect() < 1500){
+                drive.goForward(-.75);
+                telemetry.addData("do it", doit);
+                telemetry.addData("gold on center",1);
+                telemetry.update();
             }
             drive.StopMotors(0);
             drive.resetEC();
 
-            drive.ECtelem();
-
         }
+        /*
         while(opModeIsActive() && !Gleft && !Gright && !Gcenter && doit){
             while(opModeIsActive() && drive.rect() < 50){
                 drive.goRight(.5);
@@ -199,11 +301,16 @@ public class Auto1 extends RR2_LiftBot {
 
             drive.ECtelem();
 
-        }
+        }*/
         while(opModeIsActive() && sense.sideD()>14){
             drive.teledrive(.75,0,0,.15);
+            telemetry.addData("do it", doit);
             telemetry.addData("driving to wall",1);
+            telemetry.addData("gold on left", Gleft);
+            telemetry.addData("gold on right", Gright);
+            telemetry.addData("gold on center", Gcenter);
             drive.ECtelem();
+
             telemetry.update();
         }
         drive.StopMotors(0);
@@ -225,34 +332,38 @@ public class Auto1 extends RR2_LiftBot {
                 drive.StopMotors(0);
             }
         }*/
-        while(opModeIsActive() && time.seconds()< .7){
+        while(opModeIsActive() && time.seconds()< .4){
             drive.turnClockwise(-.75);
         }
-        /*
         drive.StopMotors(0);
-        while(opModeIsActive()&& drive.bect() < 1000){
+        drive.resetEC();
+        time.reset();
+        drive.StopMotors(0);
+        while(opModeIsActive()&& drive.bect()> 3000){
             if (sense.sideD()>5){
-                drive.diaginalFLtoBR(-1);
+                drive.teledrive(1,-1,0,0);
             }
             else if (sense.sideD()<3){
-                drive.diaginalFRtoBL(-1);
+                drive.teledrive(1,1,0,0);
             }
             else {
-                drive.goForward(-.75);
+                drive.teledrive(.75,0,0,0);
             }
-            telemetry.addData("failed to find gold", 1);
+            drive.ECtelem();
             telemetry.addData("following wall to zone", 1);
             telemetry.update();
         }
         drive.StopMotors(0);
         while(opModeIsActive() && time.seconds()<1){
             sense.teammarker(.75);
+            drive.ECtelem();
             telemetry.addData("dumping TM", 1);
             telemetry.update();
         }
         sense.teammarker(0);
         drive.StopMotors(0);
         drive.resetEC();
+        /*
         while(opModeIsActive() && (Gright || Gcenter || Gleft)){
             telemetry.addData("attempting 2nd mineral", 1);
             telemetry.update();
@@ -305,21 +416,22 @@ public class Auto1 extends RR2_LiftBot {
                 Gcenter=false;
             }
 
-        }
+        }*/
         drive.StopMotors(0);
-        while(opModeIsActive()&& drive.fect() < 1250){
+        while(opModeIsActive()&& drive.fect() < 3000){
             if (sense.sideD()>5){
-                drive.diaginalFLtoBR(1);
+                drive.teledrive(-1,-1,0,0);
             }
             else if (sense.sideD()<3){
-                drive.diaginalFRtoBL(1);
+                drive.teledrive(-1,1,0,0);
             }
             else {
-                drive.goForward(.75);
+                drive.teledrive(-.75,0,0,0);
             }
             telemetry.addData("return to crater", 1);
+            drive.ECtelem();
             telemetry.update();
-        }*/
+        }
         drive.StopMotors(0);
     }
 }
