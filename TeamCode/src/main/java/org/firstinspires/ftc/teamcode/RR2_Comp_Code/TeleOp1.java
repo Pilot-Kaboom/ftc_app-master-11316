@@ -11,8 +11,10 @@ public class TeleOp1 extends RR2_TeleBot {
             //drive
             drive.teledrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_trigger, gamepad1.left_trigger);
             //arm
-            arm.hin(gamepad1.right_stick_x);
-            arm.vin(gamepad2.right_stick_y);
+            //arm.hin(gamepad1.right_stick_x);
+            //arm.vin(gamepad2.right_stick_y);
+            arm.VposSet(gamepad2.right_stick_y,gamepad2.a);
+            arm.HposSet(gamepad2.left_stick_y,gamepad2.a,gamepad2.right_bumper);
             //lift
             lifter.LiftOps(gamepad2.left_stick_y);
             //collecter
