@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 
-@Autonomous(name="auto1", group="Auto1")
-public class Auto1 extends RR2_LiftBot {
+@Autonomous(name="autoLandSample", group="Auto1")
+public class AutoJustLandSample extends RR2_LiftBot {
 
     @Override
     public void run() {
@@ -50,7 +50,7 @@ public class Auto1 extends RR2_LiftBot {
         }
         time.reset();
         while(opModeIsActive()&& time.seconds()<.1)
-        drive.StopMotors(0);
+            drive.StopMotors(0);
         //gold on right
         /*
         if(sense.colorL()> sense.white() && sense.colorR() > sense.white()){
@@ -109,7 +109,7 @@ public class Auto1 extends RR2_LiftBot {
                 telemetry.update();
             }
             else{
-                Gright = false;
+                Gright = true;
                 Gcenter = false;
                 Gleft = false;
                 telemetry.addData("deciding", 1);
@@ -302,136 +302,6 @@ public class Auto1 extends RR2_LiftBot {
             drive.ECtelem();
 
         }*/
-        while(opModeIsActive() && sense.sideD()>14){
-            drive.teledrive(.75,0,0,.15);
-            telemetry.addData("do it", doit);
-            telemetry.addData("driving to wall",1);
-            telemetry.addData("gold on left", Gleft);
-            telemetry.addData("gold on right", Gright);
-            telemetry.addData("gold on center", Gcenter);
-            drive.ECtelem();
-
-            telemetry.update();
-        }
-        drive.StopMotors(0);
-        drive.resetEC();
-        time.reset();
-        /*
-        while(opModeIsActive() && gyro.getGyroZ(AngleUnit.DEGREES)< 45){
-            drive.turnClockwise(.75);
-        }
-        time.reset();
-        while(opModeIsActive() && time.seconds() <1){
-            if (gyro.getGyroZ(AngleUnit.DEGREES)< 46){
-                drive.turnClockwise(.15);
-            }
-            else if (gyro.getGyroZ(AngleUnit.DEGREES)> 44){
-                drive.turnClockwise(-.15);
-            }
-            else{
-                drive.StopMotors(0);
-            }
-        }*/
-        while(opModeIsActive() && time.seconds()< .4){
-            drive.turnClockwise(-.75);
-        }
-        drive.StopMotors(0);
-        drive.resetEC();
-        time.reset();
-        drive.StopMotors(0);
-        while(opModeIsActive()&& drive.bect()> 3000){
-            if (sense.sideD()>5){
-                drive.teledrive(1,-1,0,0);
-            }
-            else if (sense.sideD()<3){
-                drive.teledrive(1,1,0,0);
-            }
-            else {
-                drive.teledrive(.75,0,0,0);
-            }
-            drive.ECtelem();
-            telemetry.addData("following wall to zone", 1);
-            telemetry.update();
-        }
-        drive.StopMotors(0);
-        while(opModeIsActive() && time.seconds()<1){
-            sense.teammarker(.75);
-            drive.ECtelem();
-            telemetry.addData("dumping TM", 1);
-            telemetry.update();
-        }
-        sense.teammarker(0);
-        drive.StopMotors(0);
-        drive.resetEC();
-        /*
-        while(opModeIsActive() && (Gright || Gcenter || Gleft)){
-            telemetry.addData("attempting 2nd mineral", 1);
-            telemetry.update();
-            if(Gleft){
-                while(drive.fect()<50){
-                    drive.goForward(.25);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(drive.rect()<500){
-                    drive.goRight(.7);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(sense.sideD()>3){
-                    drive.goRight(-.7);
-                }
-                Gleft=false;
-            }
-            else if(Gright){
-                while(drive.fect()<150){
-                    drive.goForward(.25);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(drive.rect()<400){
-                    drive.goRight(.7);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(sense.sideD()>3){
-                    drive.goRight(-.7);
-                }
-                Gright=false;
-            }
-            else if(Gcenter){
-                while(drive.fect()<100){
-                    drive.goForward(.25);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(drive.rect()<450){
-                    drive.goRight(.7);
-                }
-                drive.StopMotors(0);
-                drive.resetEC();
-                while(sense.sideD()>3){
-                    drive.goRight(-.7);
-                }
-                Gcenter=false;
-            }
-
-        }*/
-        drive.StopMotors(0);
-        while(opModeIsActive()&& drive.fect() < 3000){
-            if (sense.sideD()>5){
-                drive.teledrive(-1,-1,0,0);
-            }
-            else if (sense.sideD()<3){
-                drive.teledrive(-1,1,0,0);
-            }
-            else {
-                drive.teledrive(-.75,0,0,0);
-            }
-            telemetry.addData("return to crater", 1);
-            drive.ECtelem();
-            telemetry.update();
-        }
         drive.StopMotors(0);
     }
 }

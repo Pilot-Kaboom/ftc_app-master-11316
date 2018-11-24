@@ -21,4 +21,7 @@ public class Arm {
     public void hin(double hin){
         hori.setPower(hin);
     }
+
+
+
 }
