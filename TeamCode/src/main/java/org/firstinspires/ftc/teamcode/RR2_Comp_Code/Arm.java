@@ -37,7 +37,7 @@ public class Arm {
         else{
             hori.setPower(hin);
         }
-
+//a
     }*/
     public void vin(double vin){
 
