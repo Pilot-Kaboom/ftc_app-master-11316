@@ -18,10 +18,10 @@ public class collecter {
     }
     public void drop(boolean open, boolean closed){
         if(open){
-            dump.setPosition(.5);
-        }
-        else if(closed){
             dump.setPosition(0);
+        }
+        else{
+            dump.setPosition(.6);
         }
     }
 }

@@ -19,12 +19,37 @@ public class Arm {
         hori = arm.hardwareMap.dcMotor.get("hori");
         this.arm = arm;
     }
+    /*
+    public void vin(double vin, boolean v){
 
-    public void vin(double vin){
-        vert.setPower(vin);
+        if (v){
+            vert.setPower(.15+vin);
+        }
+        else{
+            vert.setPower(vin);
+        }
     }
+
+    public void hin(double hin, boolean h){
+        if(h){
+            hori.setPower(.01+hin);
+        }
+        else{
+            hori.setPower(hin);
+        }
+
+    }*/
+    public void vin(double vin){
+
+
+        vert.setPower(.15+vin);
+
+    }
+
     public void hin(double hin){
-        hori.setPower(hin);
+
+        hori.setPower(.015+hin);
+
     }
     public void VposSet(double posset, boolean doit){
         pos = (pos + posset);
@@ -32,7 +57,7 @@ public class Arm {
             vert.setPower(posset);
         }
         else{
-            vert.setPower(Vpower());
+            vert.setPower(-Vpower());
         }
     }
     public double Vpower(){
@@ -54,10 +79,10 @@ public class Arm {
             hori.setPower(posset);
         }
         else if(doitabit){
-            hori.setPower(more());
+            hori.setPower(-more());
         }
         else{
-            hori.setPower(Hpower());
+            hori.setPower(-Hpower());
         }
     }
     public void resetArmEc(){
@@ -67,5 +92,21 @@ public class Arm {
         vert.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         hori.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         arm.idle();
+    }
+    public void stopusingEC(){
+        vert.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        hori.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm.idle();
+    }
+    public void Armtelem(){
+        arm.telemetry.addData("vec", vert.getCurrentPosition());
+        arm.telemetry.addData("HEc", hori.getCurrentPosition());
+        arm.telemetry.addData("Vpower", Vpower());
+        arm.telemetry.addData("HsetPos", HsetPos());
+        arm.telemetry.addData("Hpower", Hpower());
+        arm.telemetry.addData("HEc-othapos", more());
+        arm.telemetry.addData("othapos", othapos);
+        arm.telemetry.addData("pos", pos);
+        arm.telemetry.update();
     }
 }

@@ -24,6 +24,27 @@ public class lift {
         }
         else{*/
         winch.setPower(up);
+
+        //}
+    }
+    public void LiftOpss(boolean uup, boolean down){
+        /*if (uplimit.isPressed()){
+            winch.setPower(0);
+        }
+        else if (downlimit.isPressed()){
+            winch.setPower(0);
+        }
+        else{*/
+
+        if(uup){
+            winch.setPower(.75);
+        }
+        else if(down){
+            winch.setPower(-.75);
+        }
+        else{
+            winch.setPower(0);
+        }
         //}
     }
 
