@@ -25,7 +25,7 @@ public class lift {
         else{*/
         winch.setPower(up);
 
-        //}
+        //b}
     }
     public void LiftOpss(boolean uup, boolean down){
         /*if (uplimit.isPressed()){
