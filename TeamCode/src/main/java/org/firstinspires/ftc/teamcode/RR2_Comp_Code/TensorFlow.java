@@ -51,6 +51,9 @@ public class TensorFlow {
      * {@link #tfod} is the variable we will use to store our instance of the Tensor Flow Object
      * Detection engine.
      */
+    private boolean right;
+    private boolean left;
+    private boolean center;
     private TFObjectDetector tfod;
     private final LinearOpMode tfoddd;
     public TensorFlow(LinearOpMode tfoddd){
@@ -94,10 +97,20 @@ public class TensorFlow {
                     if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
                         if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             tfoddd.telemetry.addData("Gold Mineral Position", "Left");
+
+                            right=false;
+                            center=false;
+                            left=true;
                         } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             tfoddd.telemetry.addData("Gold Mineral Position", "Right");
+                            right=true;
+                            center=false;
+                            left=false;
                         } else {
                             tfoddd.telemetry.addData("Gold Mineral Position", "Center");
+                            right=false;
+                            center=true;
+                            left=false;
                         }
                     }
                 }
@@ -136,5 +149,14 @@ public class TensorFlow {
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+    }
+    public boolean Right(){
+        return(right);
+    }
+    public boolean Left(){
+        return(left);
+    }
+    public boolean Center(){
+        return(center);
     }
 }
