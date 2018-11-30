@@ -20,8 +20,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * IMPORTANT: In order to use this OpMode, you need to obtain your own Vuforia license key as
  * is explained below.
  */
-@TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
-@Disabled
+//@TeleOp(name = "Concept: TensorFlow Object Detection", group = "Concept")
+//@Disabled
 public class TensorFlow {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
@@ -61,7 +61,7 @@ public class TensorFlow {
         this.tfoddd = tfoddd;
     }
 
-    public void runOpMode() {
+    public void runTFscan() {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
@@ -117,9 +117,7 @@ public class TensorFlow {
                 tfoddd.telemetry.update();
             }
         }
-        if (tfod != null) {
-            tfod.shutdown();
-        }
+
     }
 
     /**
