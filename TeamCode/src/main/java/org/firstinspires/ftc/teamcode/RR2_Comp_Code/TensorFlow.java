@@ -60,10 +60,7 @@ public class TensorFlow {
 
         this.tfoddd = tfoddd;
     }
-
-    public void runTFscan() {
-        // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
-        // first.
+    public void initVison(){
         initVuforia();
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
@@ -71,6 +68,16 @@ public class TensorFlow {
         } else {
             tfoddd.telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
+        tfoddd.telemetry.addData("gold on left", Left());
+        tfoddd.telemetry.addData("gold on right", Right());
+        tfoddd.telemetry.addData("gold on center",Center());
+        tfoddd.telemetry.addData(">", "Press Play to start tracking");
+        tfoddd.telemetry.update();
+    }
+
+    public void runTFscan() {
+        // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
+        // first.
         if (tfod != null) {
             tfod.activate();
         }
@@ -116,6 +123,9 @@ public class TensorFlow {
                 }
                 tfoddd.telemetry.update();
             }
+        }
+        if (tfod != null) {
+            tfod.shutdown();
         }
 
     }

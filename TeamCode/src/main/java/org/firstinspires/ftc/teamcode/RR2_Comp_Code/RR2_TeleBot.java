@@ -24,6 +24,8 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
         UpdatingManager updatingManager = new UpdatingManager(this);
         updatingManager.addUpdatable(gyro);
         updatingManager.start();
+        tfoddd.initVison();
+
 
     }
 }
