@@ -6,7 +6,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 
 @Autonomous(name="auto2", group="Auto1")
-public class Auto2 extends RR2_TeleBot {
+public class Auto2 extends RR2_AutoBot {
 
     @Override
     public void run() {
