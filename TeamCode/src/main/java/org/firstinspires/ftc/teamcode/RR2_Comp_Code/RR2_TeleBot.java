@@ -8,12 +8,12 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
     public lift lifter;
     public sensors sense;
     public LoopingRevGyro gyro;
-    public TensorFlow tfoddd;
+    //public TensorFlow tfoddd;
     public boolean doit;
 
     @Override
     public void initiate(){
-        tfoddd = new TensorFlow(this);
+        //tfoddd = new TensorFlow(this);
         arm = new Arm(this);
         drive = new Drive(this);
         collect = new collecter(hardwareMap);
@@ -24,7 +24,7 @@ public abstract class RR2_TeleBot extends SuperSuperClass {
         UpdatingManager updatingManager = new UpdatingManager(this);
         updatingManager.addUpdatable(gyro);
         updatingManager.start();
-        tfoddd.initVison();
+        //tfoddd.initVison();
 
 
     }
