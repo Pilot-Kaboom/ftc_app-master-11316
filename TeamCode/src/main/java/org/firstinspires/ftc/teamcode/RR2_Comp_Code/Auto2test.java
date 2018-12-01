@@ -15,7 +15,7 @@ public class Auto2test extends RR2_LiftBot {
         }
         while (opModeIsActive() && time.seconds() < 2){
             lifter.LiftOps(1);
-            //vert.setPower(1);
+            //vert.setPower(1);a
         }
         lifter.LiftOps(0);
         //vert.setPower(0);
