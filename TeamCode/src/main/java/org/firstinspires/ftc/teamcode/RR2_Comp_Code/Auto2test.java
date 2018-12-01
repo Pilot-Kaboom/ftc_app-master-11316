@@ -21,12 +21,23 @@ public class Auto2test extends RR2_LiftBot {
         //vert.setPower(0);
         drive.resetEC();
         //hi ho robot, away!
-        while(opModeIsActive() && drive.bect() <600 ){
+        while(opModeIsActive() && drive.bect() <400 ){
             drive.goForward(-.5);
         }
         time.reset();
         while(opModeIsActive() && time.seconds()< .25){
             drive.StopMotors(0);
+        }
+        /*
+        while(opModeIsActive() && sense.backD()< 14){
+            drive.goRight(-.75);
+            sense.sensortelem();
+
+        }*/
+        while(opModeIsActive() && sense.backD() < 21){
+            drive.goRight(-.25);
+            sense.sensortelem();
+
         }
 
     }
