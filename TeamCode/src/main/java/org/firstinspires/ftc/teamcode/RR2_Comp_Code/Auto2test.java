@@ -35,7 +35,7 @@ public class Auto2test extends RR2_LiftBot {
 
         }*/
         time.reset();
-        while(opModeIsActive() && time.seconds() < 5){
+        while(opModeIsActive() && time.seconds() <6){
             drive.goRight(-.25);
             sense.sensortelem();
 
