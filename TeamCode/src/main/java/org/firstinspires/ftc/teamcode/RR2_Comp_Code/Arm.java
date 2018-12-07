@@ -40,15 +40,23 @@ public class Arm {
 //a
     }*/
     public void vin(double vin){
-
-
-        vert.setPower(.15+vin);
-
+            vert.setPower(.25+vin);
     }
 
-    public void hin(double hin){
+    public void hin(double hin, double dis, boolean goit){
+        if(dis > 35 && dis < 45 && goit){
+            hori.setPower(.15+hin);
+        }
+        else if(goit && dis > 45){
+            hori.setPower(.6+hin);
+        }
+        else if(dis<35 && goit){
+            hori.setPower(-.15+hin);
+        }
+        else{
+            hori.setPower(.15+hin);
+        }
 
-        hori.setPower(.015+hin);
 
     }
     public void VposSet(double posset, boolean doit){

@@ -25,26 +25,30 @@ public class sensors {
 
     private final DistanceSensor Bd;
     private final DistanceSensor Sd;
-    private final ColorSensor Rc;
+    /*private final ColorSensor Rc;
     private final ColorSensor Lc;
-    private final ColorSensor white;
-    private final OpticalDistanceSensor Ld;
-    private final OpticalDistanceSensor Rd;
-    private final Servo dumper;
     private final TouchSensor backtouch;
+    private final OpticalDistanceSensor Ld;
+    private final OpticalDistanceSensor Rd;*/
+    private final ColorSensor white;
+    private final OpticalDistanceSensor whiteD;
+    private final Servo dumper;
+
    // private final BNO055IMU imu;
    // private Orientation angle;
     private final LinearOpMode sense;
     public sensors(LinearOpMode sense){
         Bd = sense.hardwareMap.get(DistanceSensor.class, "bd");
         Sd = sense.hardwareMap.get(DistanceSensor.class, "sd");
-        Rc = sense.hardwareMap.colorSensor.get("rcd");
+        /*Rc = sense.hardwareMap.colorSensor.get("rcd");
         Rd = sense.hardwareMap.opticalDistanceSensor.get("rcd");
+        backtouch = sense.hardwareMap.touchSensor.get("backtouch");
         Lc = sense.hardwareMap.colorSensor.get("lcd");
-        Ld = sense.hardwareMap.opticalDistanceSensor.get("lcd");
+        Ld = sense.hardwareMap.opticalDistanceSensor.get("lcd");*/
+        whiteD = sense.hardwareMap.opticalDistanceSensor.get("white");
         white = sense.hardwareMap.colorSensor.get("white");
         dumper = sense.hardwareMap.servo.get("dumper");
-        backtouch = sense.hardwareMap.touchSensor.get("backtouch");
+
         /*
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -69,6 +73,7 @@ public class sensors {
     public double sideD(){
         return (Sd.getDistance(DistanceUnit.INCH));
     }
+    /*
     public double colorR(){
         return(Rc.blue());
     }
@@ -83,20 +88,25 @@ public class sensors {
     }
     public boolean touch(){
         return (backtouch.isPressed());
-    }
+    }*/
     public double white(){
         return (white.blue()-4);
+    }
+    public double bucketDis(){
+        return (whiteD.getLightDetected());
     }
     public void teammarker(double pos){
         dumper.setPosition(pos);
     }
     public void sensortelem(){
         sense.telemetry.addData("white", white());
+        sense.telemetry.addData("white", bucketDis());
+        /*
         sense.telemetry.addData("colorL", colorL());
         sense.telemetry.addData("colorR", colorR());
         sense.telemetry.addData("disL", disL());
         sense.telemetry.addData("disR", disR());
-        sense.telemetry.addData("touch", touch());
+        sense.telemetry.addData("touch", touch());*/
         sense.telemetry.addData("sideD", sideD());
         sense.telemetry.addData("backD", backD());
 

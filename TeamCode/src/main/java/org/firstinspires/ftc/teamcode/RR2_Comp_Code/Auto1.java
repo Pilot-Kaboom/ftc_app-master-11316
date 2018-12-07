@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 
-@Autonomous(name="auto1", group="Auto1")
+@Autonomous(name="do not use2", group="Auto1")
 public class Auto1 extends RR2_LiftBot {
 
     @Override
@@ -44,7 +44,7 @@ public class Auto1 extends RR2_LiftBot {
         }
         drive.StopMotors(0);
         drive.resetEC();
-        while(opModeIsActive()&& (sense.disL()<.1675 && sense.disR()< .1675)){
+        while(opModeIsActive() /*&&(sense.disL()<.1675 && sense.disR()< .1675)*/){
             drive.goForward(-.25);
             sense.sensortelem();
         }
@@ -79,7 +79,7 @@ public class Auto1 extends RR2_LiftBot {
         */
         time.reset();
         while(opModeIsActive() && time.seconds()<1){
-            if((sense.colorR()> 21 )&& (sense.colorL()> 21)){
+            if(1>1/*(sense.colorR()> 21 )&& (sense.colorL()> 21)*/){
                 Gright = true;
                 Gcenter = false;
                 Gleft = false;
@@ -89,7 +89,7 @@ public class Auto1 extends RR2_LiftBot {
                 telemetry.update();
             }
             //gold in center
-            else if(sense.colorR()> 21){
+            else if(1>1/*sense.colorR()> 21*/){
                 Gright = false;
                 Gcenter = false;
                 Gleft = true;
@@ -99,7 +99,7 @@ public class Auto1 extends RR2_LiftBot {
                 telemetry.update();
             }
             //gold on left
-            else if(sense.colorL()> 21){
+            else if(1>1/*sense.colorL()> 21*/){
                 Gright = false;
                 Gcenter = true;
                 Gleft = false;
