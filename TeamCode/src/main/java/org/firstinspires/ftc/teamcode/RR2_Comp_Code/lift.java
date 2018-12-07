@@ -37,10 +37,10 @@ public class lift {
         else{*/
 
         if(uup){
-            winch.setPower(.75);
+            winch.setPower(-.75);
         }
         else if(down){
-            winch.setPower(-.75);
+            winch.setPower(.75);
         }
         else{
             winch.setPower(0);
